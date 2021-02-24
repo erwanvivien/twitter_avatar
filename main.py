@@ -12,13 +12,13 @@ def get_content(file):
     return s
 
 
-api_key = get_content("api_key")
-api_secret = get_content("api_secret")
+# api_key = get_content("api_key")
+# api_secret = get_content("api_secret")
 
 bearer_token = get_content("bearer_token")
 
-token_key = get_content("token_key")
-token_secret = get_content("token_secret")
+# token_key = get_content("token_key")
+# token_secret = get_content("token_secret")
 
 
 screen_name = "elonmusk"
@@ -39,8 +39,7 @@ message = "BRUUUUH"
 random1 = 500
 random2 = 500
 
-embed_string = '''
-{
+embed_string = '''{
   "embed": {
     "description": "''' + message + '''",
     "color": 1942002,
@@ -66,8 +65,7 @@ embed_string = '''
       }
     ]
   }
-}
-'''
+}'''
 
 # embed_string = embed_string.format(
 #     screen_name, id_name, icon_url, 500, 580, "bruuuh")
