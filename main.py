@@ -45,7 +45,7 @@ for screen_name in sys.argv[1:]:
 
     screen_name = js["name"]
     id_name = js["screen_name"]
-    icon_url = js["profile_image_url_https"]
+    icon_url = js["profile_image_url_https"].replace("_normal.", ".")
 
     random1 = 500
     random2 = 500
