@@ -9,4 +9,18 @@ A simple python script to retrieve someone avatar's url from their twitter name.
 
 ## How to use
 
-You just need to create a file name `bearer_token` and paste the value you get from your application. Get your twitter [Bearer Token](https://developer.twitter.com/en/portal/dashboard)
+You just need to create a json file named `profile` and paste the value you get from your application. Get your twitter [Bearer Token](https://developer.twitter.com/en/portal/dashboard)
+
+A default `profile` would be:
+
+```json
+{
+  "api_key": "XXXXXXXXXXXXXXXXXXXXXXXXX",
+  "api_secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "token_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "token_secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "bearer_token": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+}
+```
+
+but you only need the field `bearer_token`
