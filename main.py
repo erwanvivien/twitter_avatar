@@ -1,4 +1,6 @@
 import requests
+import json
+import sys
 
 
 def get_content(file):
@@ -12,36 +14,48 @@ def get_content(file):
     return s
 
 
-# api_key = get_content("api_key")
-# api_secret = get_content("api_secret")
+if len(sys.argv) <= 1:
+    print("You might need to provide some twitter usernames !")
+    exit(1)
 
-bearer_token = get_content("bearer_token")
+discord = False
+if "discord=1" in [e.lower() for e in sys.argv]:
+    discord = True
+    sys.argv = [e for e in sys.argv if e.lower() != "discord=1"]
 
-# token_key = get_content("token_key")
-# token_secret = get_content("token_secret")
+profile = json.loads(get_content("profile"))
 
+bearer_token = profile["bearer_token"]
+# api_key = profile["api_key"]
+# api_secret = profile["api_secret"]
+# token_key = profile["token_key"]
+# token_secret = profile["token_secret"]
 
-screen_name = "elonmusk"
+screen_name = sys.argv[1]
 header = {"Authorization": f"Bearer {bearer_token}"}
-r = requests.get(
-    f"https://api.twitter.com/1.1/users/show.json?screen_name={screen_name}", headers=header)
 
-# print(r)
-# print(r.json())
-js = r.json()
+message = "CHANGE THIS MESSAGE"
 
-screen_name = js["name"]
-id_name = js["screen_name"]
-icon_url = js["profile_image_url_https"]
-message = "BRUUUUH"
+for screen_name in sys.argv[1:]:
+    print(f"{screen_name}:")
+    r = requests.get(
+        f"https://api.twitter.com/1.1/users/show.json?screen_name={screen_name}", headers=header)
 
+    js = r.json()
 
-random1 = 500
-random2 = 500
+    screen_name = js["name"]
+    id_name = js["screen_name"]
+    icon_url = js["profile_image_url_https"]
 
-embed_string = '''{
+    random1 = 500
+    random2 = 500
+
+    embed_string = '''{
   "embed": {
     "description": "''' + message + '''",
+    "image": {
+      "url": "CHANGE THIS URL IF YOU WANT TO HAVE AN EMBED IMAGE, OTHERWISE, REMOVE THE IMAGE FIELD"
+    },
     "color": 1942002,
     "footer": {
       "icon_url": "https://abs.twimg.com/icons/apple-touch-icon-192x192.png",
@@ -54,20 +68,20 @@ embed_string = '''{
     },
     "fields": [
       {
-        "name": "Retweets",
-        "value": "''' + str(random1) + '''",
-        "inline": true
+          "name": "Retweets",
+          "value": "''' + str(random1) + '''",
+          "inline": true
       },
       {
-        "name": "Likes",
-        "value": "''' + str(random2) + '''",
-        "inline": true
+          "name": "Likes",
+          "value": "''' + str(random2) + '''",
+          "inline": true
       }
     ]
   }
 }'''
 
-# embed_string = embed_string.format(
-#     screen_name, id_name, icon_url, 500, 580, "bruuuh")
-
-print(embed_string)
+    if discord:
+        print(embed_string)
+    else:
+        print(icon_url)
