@@ -4,7 +4,7 @@ A simple python script to retrieve someone avatar's url from their twitter name.
 
 ## Use case
 
-- If you want to create fake twitter embed for discord
+- If you want to create fake twitter embed for discord (using the parameter `discord=1`)
 - If you want to download someone's image rapidly
 
 ## How to use
