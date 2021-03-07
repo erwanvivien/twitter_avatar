@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+import datetime
 
 
 def get_content(file):
@@ -37,7 +38,7 @@ header = {"Authorization": f"Bearer {bearer_token}"}
 message = "CHANGE THIS MESSAGE"
 
 for screen_name in sys.argv[1:]:
-    print(f"{screen_name}:")
+    print(f"\033[91m{screen_name}\033[0m:")
     r = requests.get(
         f"https://api.twitter.com/1.1/users/show.json?screen_name={screen_name}", headers=header)
 
@@ -59,7 +60,7 @@ for screen_name in sys.argv[1:]:
     "color": 1942002,
     "footer": {
       "icon_url": "https://abs.twimg.com/icons/apple-touch-icon-192x192.png",
-      "text": "Twitter"
+      "text": "Twitter • ''' + datetime.datetime.now().strftime("%d/%m/%y") + '''"
     },
     "author": {
       "name": "''' + screen_name + ''' (@''' + id_name + ''')",
@@ -81,7 +82,7 @@ for screen_name in sys.argv[1:]:
   }
 }'''
 
-    if discord:
-        print(embed_string)
-    else:
-        print(icon_url)
+if discord:
+    print(embed_string)
+else:
+    print(icon_url)
