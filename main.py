@@ -14,15 +14,16 @@ def get_content(file):
         return ""
     return s
 
+discord = False
+if "discord=1" in [e.lower() for e in sys.argv]:
+    discord = True
+    sys.argv = [e for e in sys.argv if e.lower() != "discord=1"]
 
 if len(sys.argv) <= 1:
     print("You might need to provide some twitter usernames !")
     exit(1)
 
-discord = False
-if "discord=1" in [e.lower() for e in sys.argv]:
-    discord = True
-    sys.argv = [e for e in sys.argv if e.lower() != "discord=1"]
+
 
 profile = json.loads(get_content("profile"))
 
